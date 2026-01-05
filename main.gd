@@ -5,8 +5,11 @@ const WALL = preload("res://wall.tscn")
 const PLATFORM = preload("res://platform.tscn")
 const SPIDER = preload("res://spider.tscn")
 const FLY = preload("res://fly.tscn")
+const DIRT = preload("res://dirt.tscn")
 var secondToLastPlatform
 var lastPlatform
+var accel = .8
+var max_speed = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +24,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.falling:
-		Global.game_speed += delta 
+		Global.game_speed = min(Global.game_speed + delta * accel, max_speed)
 		$ObstacleTimer.paused = false
 	else:
 		$ObstacleTimer.paused = true
@@ -78,8 +81,15 @@ func _on_obstacle_timer_timeout() -> void:
 		_spawnSpider()
 	elif doEnemy < .5:
 		_spawnFly()
+	elif doEnemy < .75:
+		_spawnDirt()
 	
-		
+
+func _spawnDirt():
+	var dirt = DIRT.instantiate()
+	add_child(dirt)
+	dirt.position = Vector2(128 + 128 * randi_range(0,5),0)
+
 func _spawnFly():
 	var fly = FLY.instantiate()
 	add_child(fly)
@@ -92,3 +102,15 @@ func _gameOver():
 func _on_wall_spawn_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		_gameOver()
+	
+func _on_wall_spawn_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		if body.tempDespawnHit > 1:
+			body.queue_free()
+		else: 
+			body._addHit()
+
+
+func _on_dirt_despawn_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.queue_free()

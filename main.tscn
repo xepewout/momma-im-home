@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b58doyquyd1j"]
+[gd_scene load_steps=4 format=3 uid="uid://b58doyquyd1j"]
 
 [ext_resource type="Script" uid="uid://nrwy4go4r58q" path="res://main.gd" id="1_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(1024, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(1024, 20)
 
 [node name="Main" type="Node2D"]
@@ -22,8 +25,15 @@ shape = SubResource("RectangleShape2D_ig7tw")
 [node name="ObstacleTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="DirtDespawn" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirtDespawn"]
+position = Vector2(512, 768)
+shape = SubResource("RectangleShape2D_0xm2m")
+
 [connection signal="area_entered" from="WallSpawn" to="." method="_on_wall_spawn_area_entered"]
 [connection signal="area_exited" from="WallSpawn" to="." method="_on_wall_spawn_area_exited"]
 [connection signal="body_entered" from="WallSpawn" to="." method="_on_wall_spawn_body_entered"]
 [connection signal="body_exited" from="WallSpawn" to="." method="_on_wall_spawn_body_exited"]
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="body_entered" from="DirtDespawn" to="." method="_on_dirt_despawn_body_entered"]

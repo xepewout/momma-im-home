@@ -15,13 +15,11 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and !isSpiky:
-		Global.game_speed = 0.0
-		Global.falling = false
+		pass
 	
 func _on_body_exited(body: Node2D) -> void:
 	if body.name == "Player" and !isSpiky:
-		Global.game_speed = 5.0
-		Global.falling = true
+		pass
 		
 func _addSpikes():
 	isSpiky = true
