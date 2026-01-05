@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8brg6"]
 size = Vector2(16, 16)
 
-[node name="Web" type="Area2D"]
+[node name="Web" type="Area2D" groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)

@@ -4,6 +4,7 @@ const PLAYER = preload("res://player.tscn")
 const WALL = preload("res://wall.tscn")
 const PLATFORM = preload("res://platform.tscn")
 const SPIDER = preload("res://spider.tscn")
+const FLY = preload("res://fly.tscn")
 var secondToLastPlatform
 var lastPlatform
 
@@ -14,13 +15,13 @@ func _ready() -> void:
 	add_child(player)
 	_spawnWall(Vector2(0,768))
 	_spawnWall(Vector2(896,768))
+	player.hit.connect(_gameOver)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.falling:
 		Global.game_speed += delta 
-		print(Global.game_speed)
 		$ObstacleTimer.paused = false
 	else:
 		$ObstacleTimer.paused = true
@@ -72,11 +73,18 @@ func _on_obstacle_timer_timeout() -> void:
 		_spawnObstacle(spawn + Vector2(128,0))
 	else:
 		_spawnObstacle()
-	var doSpider = randf()
-	if doSpider < .25:
+	var doEnemy = randf()
+	if doEnemy < .25:
 		_spawnSpider()
+	elif doEnemy < .5:
+		_spawnFly()
+	
 		
-
+func _spawnFly():
+	var fly = FLY.instantiate()
+	add_child(fly)
+	fly.position = lastPlatform.position - Vector2(0,40)
+	fly._firePea()
 
 func _gameOver():
 	print("player died")

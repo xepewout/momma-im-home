@@ -9,7 +9,7 @@ height = 64.0
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4flbx"]
 size = Vector2(64, 32)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,3 +20,11 @@ shape = SubResource("CapsuleShape2D_sh265")
 texture = SubResource("PlaceholderTexture2D_4flbx")
 
 [node name="Player" type="Node2D" parent="."]
+
+[node name="Enemy Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Detection"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sh265")
+
+[connection signal="area_entered" from="Enemy Detection" to="." method="_on_enemy_detection_area_entered"]

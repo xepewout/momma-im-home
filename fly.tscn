@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://deksh2qoxbb4p"]
+
+[ext_resource type="Script" uid="uid://bjp02t7lhudwy" path="res://fly.gd" id="1_mv3iy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81sfm"]
+size = Vector2(28, 28)
+
+[node name="Fly" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_mv3iy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 14)
+shape = SubResource("RectangleShape2D_81sfm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 28.0
+offset_bottom = 28.0
+color = Color(0.2231029, 0.2231029, 0.22310287, 1)
