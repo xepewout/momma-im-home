@@ -6,6 +6,7 @@ const PLATFORM = preload("res://platform.tscn")
 const SPIDER = preload("res://spider.tscn")
 const FLY = preload("res://fly.tscn")
 const DIRT = preload("res://dirt.tscn")
+const FAN = preload("res://fan.tscn")
 var secondToLastPlatform
 var lastPlatform
 var accel = .8
@@ -83,7 +84,14 @@ func _on_obstacle_timer_timeout() -> void:
 		_spawnFly()
 	elif doEnemy < .75:
 		_spawnDirt()
-	
+	elif doEnemy < 1:
+		_spawnFan()
+
+func _spawnFan():
+	var fan = FAN.instantiate()
+	add_child(fan)
+	var fanPos = randi_range(0,5)
+	fan.position = Vector2(128 + 128 * fanPos, 0)
 
 func _spawnDirt():
 	var dirt = DIRT.instantiate()
@@ -109,7 +117,6 @@ func _on_wall_spawn_body_entered(body: Node2D) -> void:
 			body.queue_free()
 		else: 
 			body._addHit()
-
 
 func _on_dirt_despawn_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
