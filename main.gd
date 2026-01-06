@@ -12,6 +12,7 @@ var lastPlatform
 var accel = .8
 var max_speed = 10
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var player = PLAYER.instantiate()
@@ -19,7 +20,8 @@ func _ready() -> void:
 	add_child(player)
 	_spawnWall(Vector2(0,768))
 	_spawnWall(Vector2(896,768))
-	player.hit.connect(_gameOver)
+	player.dead.connect(_gameOver)
+	player.hit.connect(_playerHit)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,7 +93,7 @@ func _spawnFan():
 	var fan = FAN.instantiate()
 	add_child(fan)
 	var fanPos = randi_range(0,5)
-	fan.position = Vector2(128 + 128 * fanPos, 0)
+	fan.position = Vector2(128 + 128 * fanPos, 660)
 
 func _spawnDirt():
 	var dirt = DIRT.instantiate()
@@ -103,7 +105,10 @@ func _spawnFly():
 	add_child(fly)
 	fly.position = lastPlatform.position - Vector2(0,40)
 	fly._firePea()
-
+	
+func _playerHit():
+	print("player hit")
+	
 func _gameOver():
 	print("player died")
 

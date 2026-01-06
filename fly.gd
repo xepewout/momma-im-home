@@ -21,5 +21,5 @@ func _firePea() -> void:
 	pea = PEA.instantiate()
 	add_child(pea)
 	player = get_tree().get_nodes_in_group("player")
-	if(player[0].name == ("Player")):
+	if(player[0] and player[0].name == ("Player")):
 		peaTargetPos = player[0].position - position
