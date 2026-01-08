@@ -33,6 +33,7 @@ position = Vector2(512, 768)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="HUD" parent="." instance=ExtResource("2_0xm2m")]
+visible = false
 
 [connection signal="area_entered" from="WallSpawn" to="." method="_on_wall_spawn_area_entered"]
 [connection signal="area_exited" from="WallSpawn" to="." method="_on_wall_spawn_area_exited"]

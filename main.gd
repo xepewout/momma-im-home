@@ -6,11 +6,11 @@ const PLATFORM = preload("res://platform.tscn")
 const SPIDER = preload("res://spider.tscn")
 const FLY = preload("res://fly.tscn")
 const DIRT = preload("res://dirt.tscn")
-const FAN = preload("res://fan.tscn")
+#const FAN = preload("res://fan.tscn")
 var secondToLastPlatform
 var lastPlatform
-var accel = .8
-var max_speed = 10
+var accel = .33
+var max_speed = 12
 
 
 # Called when the node enters the scene tree for the first time.
@@ -71,9 +71,10 @@ func _on_wall_spawn_area_exited(area: Area2D) -> void:
 
 
 func _on_obstacle_timer_timeout() -> void:
+	$ObstacleTimer.wait_time = $ObstacleTimer.wait_time
 	_spawnObstacle()
-	var doClump = randi_range(0,1)
-	if(doClump):
+	var doClump = randf()
+	if(doClump < .25):
 		var spawn = Vector2(128 + 128 * randi_range(0,4),768)
 		_spawnObstacle(spawn)
 		_spawnObstacle(spawn + Vector2(128,0))
@@ -86,14 +87,14 @@ func _on_obstacle_timer_timeout() -> void:
 		_spawnFly()
 	elif doEnemy < .75:
 		_spawnDirt()
-	elif doEnemy < 1:
-		_spawnFan()
+	#elif doEnemy < 1:
+		#_spawnFan()
 
-func _spawnFan():
-	var fan = FAN.instantiate()
-	add_child(fan)
-	var fanPos = randi_range(0,5)
-	fan.position = Vector2(128 + 128 * fanPos, 660)
+#func _spawnFan():
+	#var fan = FAN.instantiate()
+	#add_child(fan)
+	#var fanPos = randi_range(0,5)
+	#fan.position = Vector2(128 + 128 * fanPos, 660)
 
 func _spawnDirt():
 	var dirt = DIRT.instantiate()
@@ -107,6 +108,7 @@ func _spawnFly():
 	fly._firePea()
 	
 func _playerHit():
+	print("player hita")
 	#$HUD.updateHealth()
 	pass
 	

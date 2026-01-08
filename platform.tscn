@@ -8,7 +8,7 @@ size = Vector2(128, 18.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi635"]
 size = Vector2(128, 30)
 
-[node name="Platform" type="Area2D"]
+[node name="Platform" type="Area2D" groups=["spikes"]]
 script = ExtResource("1_mi635")
 
 [node name="Hitbox" type="StaticBody2D" parent="."]
@@ -25,6 +25,3 @@ color = Color(0.30571792, 0.14572108, 0.11370068, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(64, 5)
 shape = SubResource("RectangleShape2D_mi635")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
