@@ -107,7 +107,8 @@ func _spawnFly():
 	fly._firePea()
 	
 func _playerHit():
-	print("player hit")
+	#$HUD.updateHealth()
+	pass
 	
 func _gameOver():
 	print("player died")
