@@ -8,9 +8,13 @@ signal dead
 var wind
 var windDirection
 var playerHealth = 3
+#leaf = slower fall rate
+#salt = faster move speed
+#dead bug = two lives
+#candy = break through spikes on cooldown
+#rock = faster fall rate
 
 func _physics_process(_delta: float) -> void:
-
 	var direction := Input.get_axis("MOVE_LEFT", "MOVE_RIGHT")
 	if wind:
 		direction = windDirection

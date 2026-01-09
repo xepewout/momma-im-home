@@ -11,6 +11,7 @@ var secondToLastPlatform
 var lastPlatform
 var accel = .33
 var max_speed = 12
+var distance = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +32,8 @@ func _process(delta: float) -> void:
 		$ObstacleTimer.paused = false
 	else:
 		$ObstacleTimer.paused = true
+	print(Global.game_speed)
+	distance += delta * Global.game_speed
 	
 func _spawnWall(wallPos: Vector2):
 	var wall = WALL.instantiate()
@@ -74,7 +77,7 @@ func _on_obstacle_timer_timeout() -> void:
 	$ObstacleTimer.wait_time = $ObstacleTimer.wait_time
 	_spawnObstacle()
 	var doClump = randf()
-	if(doClump < .25):
+	if(doClump < .1):
 		var spawn = Vector2(128 + 128 * randi_range(0,4),768)
 		_spawnObstacle(spawn)
 		_spawnObstacle(spawn + Vector2(128,0))
