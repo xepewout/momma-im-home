@@ -15,3 +15,43 @@ text = "Player Health: 0"
 [node name="DistanceLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="LeafButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+text = "Leaf"
+
+[node name="RockButton" type="Button" parent="."]
+offset_left = 56.0
+offset_right = 98.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "rock"
+
+[node name="CandyButton" type="Button" parent="."]
+offset_left = 120.0
+offset_right = 174.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "candy"
+
+[node name="BugButton" type="Button" parent="."]
+offset_left = 184.0
+offset_right = 222.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "bug"
+
+[node name="SaltButton" type="Button" parent="."]
+offset_left = 240.0
+offset_right = 276.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "salt"
+
+[connection signal="toggled" from="LeafButton" to="." method="_on_leaf_button_toggled"]
+[connection signal="toggled" from="RockButton" to="." method="_on_rock_button_toggled"]
+[connection signal="toggled" from="CandyButton" to="." method="_on_candy_button_toggled"]
+[connection signal="toggled" from="BugButton" to="." method="_on_bug_button_toggled"]
+[connection signal="toggled" from="SaltButton" to="." method="_on_salt_button_toggled"]

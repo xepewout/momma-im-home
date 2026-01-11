@@ -12,6 +12,11 @@ var lastPlatform
 var accel = .33
 var max_speed = 12
 var distance = 0
+var leaf = false
+var rock = false
+var candy = false
+var bug = false
+var salt = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +28,7 @@ func _ready() -> void:
 	_spawnWall(Vector2(896,768))
 	player.dead.connect(_gameOver)
 	player.hit.connect(_playerHit)
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,6 +39,19 @@ func _process(delta: float) -> void:
 		$ObstacleTimer.paused = true
 	print(Global.game_speed)
 	distance += delta * Global.game_speed
+	print(leaf)
+	
+func _changeGameType():
+	if leaf:
+		_changeGameSpeed(.5)
+		accel = .2
+	elif rock:
+		_changeGameSpeed(2)
+		accel = .4
+		max_speed = 15
+	
+func _changeGameSpeed(multi: float):
+	Global.game_speed = Global.game_speed * multi
 	
 func _spawnWall(wallPos: Vector2):
 	var wall = WALL.instantiate()
@@ -60,18 +78,15 @@ func _spawnObstacle(ObstaclePosition = null):
 	if lastPlatform.position.y != platform.position.y:
 		secondToLastPlatform = lastPlatform
 	lastPlatform = platform
-	
-	
+		
 func _spawnSpider():
 	var spider = SPIDER.instantiate()
 	add_child(spider)
 	spider.position = lastPlatform.position + Vector2(0,48)
 	spider._shootWeb(secondToLastPlatform.position - spider.position)
-
 	
 func _on_wall_spawn_area_exited(area: Area2D) -> void:
 	area.queue_free()
-
 
 func _on_obstacle_timer_timeout() -> void:
 	$ObstacleTimer.wait_time = $ObstacleTimer.wait_time

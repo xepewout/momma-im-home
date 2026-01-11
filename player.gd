@@ -25,7 +25,6 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
-
 func _on_enemy_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		playerHealth -= 1
@@ -33,8 +32,7 @@ func _on_enemy_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("spikes") or playerHealth == 0:
 		dead.emit()
 		self.queue_free()
-		
-		
+			
 func _applyWind(direction: float):
 	wind = true
 	windDirection = direction/(abs(direction)/2)
