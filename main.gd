@@ -17,11 +17,10 @@ var rock = false
 var candy = false
 var bug = false
 var salt = false
-
+var player = PLAYER.instantiate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var player = PLAYER.instantiate()
 	player.position = Vector2(512,384)
 	add_child(player)
 	_spawnWall(Vector2(0,768))
@@ -49,6 +48,12 @@ func _changeGameType():
 		_changeGameSpeed(2)
 		accel = .4
 		max_speed = 15
+	elif bug:
+		player.playerHealth += 3
+	elif candy:
+		player.candyPower = true
+	elif salt:
+		player.SPEED += 200
 	
 func _changeGameSpeed(multi: float):
 	Global.game_speed = Global.game_speed * multi

@@ -24,12 +24,12 @@ func _on_rock_button_toggled(toggled_on: bool) -> void:
 
 func _on_bug_button_toggled(toggled_on: bool) -> void:
 	$"..".bug = toggled_on
-	$"..".changeGameType()
+	$".."._changeGameType()
 
 func _on_salt_button_toggled(toggled_on: bool) -> void:
 	$"..".salt = toggled_on
-	$"..".changeGameType()
+	$".."._changeGameType()
 
 func _on_candy_button_toggled(toggled_on: bool) -> void:
 	$"..".candy = toggled_on
-	$"..".changeGameType()
+	$".."._changeGameType()
