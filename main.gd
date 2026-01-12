@@ -22,11 +22,16 @@ var player = PLAYER.instantiate()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.position = Vector2(512,384)
-	add_child(player)
 	_spawnWall(Vector2(0,768))
 	_spawnWall(Vector2(896,768))
 	player.dead.connect(_gameOver)
 	player.hit.connect(_playerHit)
+	Global.game_speed = 0
+	
+func _gameStart():
+	Global.falling = true
+	Global.game_speed = 5
+	add_child(player)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
