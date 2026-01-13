@@ -67,6 +67,22 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
 text = "Start"
 
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+
 [connection signal="toggled" from="LeafButton" to="." method="_on_leaf_button_toggled"]
 [connection signal="toggled" from="RockButton" to="." method="_on_rock_button_toggled"]
 [connection signal="toggled" from="CandyButton" to="." method="_on_candy_button_toggled"]

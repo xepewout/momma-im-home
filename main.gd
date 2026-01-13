@@ -141,7 +141,10 @@ func _playerHit():
 	pass
 	
 func _gameOver():
-	print("player died")
+	$HUD/GameOverLabel.show()
+	await get_tree().create_timer(2.0).timeout
+	Global.falling = false
+	get_tree().reload_current_scene()
 
 func _on_wall_spawn_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
