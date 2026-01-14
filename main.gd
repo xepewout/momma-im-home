@@ -41,9 +41,15 @@ func _process(delta: float) -> void:
 		$ObstacleTimer.paused = false
 	else:
 		$ObstacleTimer.paused = true
-	print(Global.game_speed)
 	distance += delta * Global.game_speed
-	print(leaf)
+	if(distance >= 100):
+		_gameWon()
+	
+func _gameWon():
+	print("game won!!")
+	await get_tree().create_timer(2.0).timeout
+	Global.falling = false
+	get_tree().reload_current_scene()
 	
 func _changeGameType():
 	if leaf:

@@ -23,7 +23,6 @@ func _physics_process(_delta: float) -> void:
 		velocity.x = direction * SPEED * (Global.game_speed / (Global.game_speed - 1))
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * (Global.game_speed / (Global.game_speed - 1)))
-	print("player speed", SPEED)
 	move_and_slide()
 
 func _on_enemy_detection_area_entered(area: Area2D) -> void:
