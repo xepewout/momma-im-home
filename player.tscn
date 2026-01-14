@@ -27,4 +27,7 @@ texture = SubResource("PlaceholderTexture2D_4flbx")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_sh265")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+
 [connection signal="area_entered" from="Enemy Detection" to="." method="_on_enemy_detection_area_entered"]

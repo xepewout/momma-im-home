@@ -6,6 +6,8 @@ const PLATFORM = preload("res://platform.tscn")
 const SPIDER = preload("res://spider.tscn")
 const FLY = preload("res://fly.tscn")
 const DIRT = preload("res://dirt.tscn")
+const FD = preload("res://FD.tscn")
+const QUEEN = preload("res://queen.tscn")
 #const FAN = preload("res://fan.tscn")
 var secondToLastPlatform
 var lastPlatform
@@ -42,8 +44,19 @@ func _process(delta: float) -> void:
 	else:
 		$ObstacleTimer.paused = true
 	distance += delta * Global.game_speed
-	if(distance >= 100):
-		_gameWon()
+	if(distance >= 50):
+		if Global.falling == true:
+			_spawnQueen()
+		Global.falling = false
+		player.position.y += 5
+		
+func _spawnQueen():
+	var fd = FD.instantiate()
+	fd.position = Vector2(0,768)
+	add_child(fd)
+	var queen = QUEEN.instantiate()
+	queen.position = Vector2(0,748)
+	add_child(queen)
 	
 func _gameWon():
 	print("game won!!")
@@ -75,7 +88,7 @@ func _spawnWall(wallPos: Vector2):
 	call_deferred("add_child",wall)
 
 func _on_wall_spawn_area_entered(area: Area2D) -> void:
-	if(area.is_in_group("wall")):
+	if(area.is_in_group("wall") and Global.falling):
 		_spawnWall(Vector2(area.position.x,768))
 		
 func _spawnObstacle(ObstaclePosition = null):
@@ -152,6 +165,7 @@ func _gameOver():
 	Global.falling = false
 	get_tree().reload_current_scene()
 
+#if someone the player gets to the top
 func _on_wall_spawn_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		_gameOver()
