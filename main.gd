@@ -45,8 +45,9 @@ func _process(delta: float) -> void:
 		$ObstacleTimer.paused = true
 	distance += delta * Global.game_speed
 	if(distance >= 50):
-		if Global.falling == true:
+		if Global.falling == true and player:
 			_spawnQueen()
+			player._toggleCamera()
 		Global.falling = false
 		player.position.y += 5
 		

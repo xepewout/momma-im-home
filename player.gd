@@ -40,4 +40,7 @@ func _applyWind(direction: float):
 func _removeWind():
 	wind = false
 	windDirection = 0
+	
+func _toggleCamera():
+	$Camera2D.enabled = !$Camera2D.enabled
 		
