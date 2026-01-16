@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://deenf4jsb7nvs"]
+[gd_scene load_steps=4 format=3 uid="uid://deenf4jsb7nvs"]
 
 [ext_resource type="Script" uid="uid://dihytjl2q84gh" path="res://spider.gd" id="1_k3kcl"]
+[ext_resource type="Texture2D" uid="uid://cckhydp27kx3a" path="res://assets/spider.png" id="2_qrebf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrebf"]
 radius = 16.0
@@ -13,11 +14,7 @@ position = Vector2(16, 16)
 shape = SubResource("CircleShape2D_qrebf")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-16, -16)
-
-[node name="ColorRect" type="ColorRect" parent="CollisionShape2D/Sprite2D"]
-offset_right = 32.0
-offset_bottom = 32.0
-color = Color(0.9105937, 0.7563481, 0.85983413, 1)
+texture_filter = 1
+texture = ExtResource("2_qrebf")
 
 [node name="WebString" type="Line2D" parent="." groups=["enemy"]]
