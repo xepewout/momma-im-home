@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b24kyukpvtw7a"]
+[gd_scene load_steps=5 format=3 uid="uid://b24kyukpvtw7a"]
 
 [ext_resource type="Script" uid="uid://cuy2qyhl7nswy" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://ba23ymo85uhag" path="res://Sprite-0001.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 16.0
 height = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(48, -0.2770729, 48, 32.277073)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -16,7 +20,8 @@ shape = SubResource("CapsuleShape2D_sh265")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_onrkg")
+texture = SubResource("AtlasTexture_i3pqv")
+region_enabled = true
 
 [node name="Player" type="Node2D" parent="."]
 
