@@ -7,9 +7,9 @@
 radius = 16.0
 height = 48.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("2_onrkg")
-region = Rect2(48, -0.2770729, 48, 32.277073)
+region = Rect2(48, 1, 48, 30)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -18,12 +18,13 @@ script = ExtResource("1_4flbx")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_sh265")
 
+[node name="Player" type="Node2D" parent="."]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_i3pqv")
-region_enabled = true
-
-[node name="Player" type="Node2D" parent="."]
+position = Vector2(-4.7683716e-07, 0.5)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_onrkg")
 
 [node name="Enemy Detection" type="Area2D" parent="."]
 

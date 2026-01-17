@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4kew575wp8fc"]
+[gd_scene load_steps=5 format=3 uid="uid://c4kew575wp8fc"]
 
 [ext_resource type="Script" uid="uid://c2jj1ujnv62xk" path="res://dirt.gd" id="1_lpaap"]
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="2_wy34w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wy34w"]
 size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0dg3"]
+atlas = ExtResource("2_wy34w")
+region = Rect2(0, 32, 64, 48)
 
 [node name="Dirt" type="RigidBody2D" groups=["enemy"]]
 script = ExtResource("1_lpaap")
@@ -12,7 +17,8 @@ script = ExtResource("1_lpaap")
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_wy34w")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 64.0
-offset_bottom = 64.0
-color = Color(0.28728777, 0.2357316, 0.16573021, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(32, 42)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_d0dg3")

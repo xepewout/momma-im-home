@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://deksh2qoxbb4p"]
+[gd_scene load_steps=5 format=3 uid="uid://deksh2qoxbb4p"]
 
 [ext_resource type="Script" uid="uid://bjp02t7lhudwy" path="res://fly.gd" id="1_mv3iy"]
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="2_qarim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81sfm"]
 size = Vector2(28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c42i"]
+atlas = ExtResource("2_qarim")
+region = Rect2(98, 10, 28, 19)
 
 [node name="Fly" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_mv3iy")
@@ -13,8 +18,7 @@ position = Vector2(14, 14)
 shape = SubResource("RectangleShape2D_81sfm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 28.0
-offset_bottom = 28.0
-color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+texture_filter = 1
+position = Vector2(14, 19)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_7c42i")

@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgp3xw77vpdfg"]
+[gd_scene load_steps=4 format=3 uid="uid://bgp3xw77vpdfg"]
+
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="1_c6sk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8brg6"]
 size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpmhx"]
+atlas = ExtResource("1_c6sk7")
+region = Rect2(0, 0, 16, 16)
 
 [node name="Web" type="Area2D" groups=["enemy"]]
 
@@ -9,6 +15,8 @@ size = Vector2(16, 16)
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_8brg6")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 16.0
-offset_bottom = 16.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(7.9999995, 8)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_vpmhx")

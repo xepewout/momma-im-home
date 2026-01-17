@@ -15,7 +15,7 @@ script = ExtResource("1_ig7tw")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1024.0
 offset_bottom = 768.0
-color = Color(0.91949177, 0.70106775, 0.5920427, 1)
+color = Color(0.5569778, 0.33366588, 0.19698879, 1)
 
 [node name="WallSpawn" type="Area2D" parent="."]
 

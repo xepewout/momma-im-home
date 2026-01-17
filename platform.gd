@@ -4,11 +4,11 @@ var isSpiky = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$ColorRect.color = Color(randf(), randf(), randf())
+	#$ColorRect.color = Color(randf(), randf(), randf())
 	#var isSpikyChance = randf()
 	#if isSpikyChance < .75:
 		#_addSpikes()
-	
+	pass
 	
 func _process(_delta: float) -> void:
 	position.y -= Global.game_speed

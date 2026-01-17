@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://drettty74eepu"]
+[gd_scene load_steps=4 format=3 uid="uid://drettty74eepu"]
+
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="1_cbg6a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_akx07"]
 radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmfjw"]
+atlas = ExtResource("1_cbg6a")
+region = Rect2(0, 16, 16, 16)
 
 [node name="Pea" type="Area2D" groups=["enemy"]]
 
@@ -9,7 +15,8 @@ radius = 6.0
 position = Vector2(6, 6)
 shape = SubResource("CircleShape2D_akx07")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 12.0
-offset_bottom = 12.0
-color = Color(0.49007154, 0.7068283, 0.11419808, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(6, 6)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_tmfjw")

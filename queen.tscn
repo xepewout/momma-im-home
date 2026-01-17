@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgovbc3u2ur2s"]
+[gd_scene load_steps=5 format=3 uid="uid://bgovbc3u2ur2s"]
 
 [ext_resource type="Script" uid="uid://dkwm3142dkg50" path="res://queen.gd" id="1_rx2bg"]
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="2_gtk5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dp6v1"]
 size = Vector2(40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktqye"]
+atlas = ExtResource("2_gtk5s")
+region = Rect2(80, 48, 48, 64)
 
 [node name="Queen" type="Area2D"]
 script = ExtResource("1_rx2bg")
@@ -12,9 +17,10 @@ script = ExtResource("1_rx2bg")
 position = Vector2(19.5, 20.5)
 shape = SubResource("RectangleShape2D_dp6v1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(16, 8)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_ktqye")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

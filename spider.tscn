@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://deenf4jsb7nvs"]
+[gd_scene load_steps=5 format=3 uid="uid://deenf4jsb7nvs"]
 
 [ext_resource type="Script" uid="uid://dihytjl2q84gh" path="res://spider.gd" id="1_k3kcl"]
-[ext_resource type="Texture2D" uid="uid://cckhydp27kx3a" path="res://assets/spider.png" id="2_qrebf"]
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="2_qrebf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrebf"]
 radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yt70"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(16, 0, 30, 32)
 
 [node name="Spider" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_k3kcl")
@@ -15,6 +19,8 @@ shape = SubResource("CircleShape2D_qrebf")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture_filter = 1
-texture = ExtResource("2_qrebf")
+position = Vector2(-4.7683716e-07, 0.5)
+scale = Vector2(0.9583334, 0.96666664)
+texture = SubResource("AtlasTexture_1yt70")
 
 [node name="WebString" type="Line2D" parent="." groups=["enemy"]]

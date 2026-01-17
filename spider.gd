@@ -34,8 +34,8 @@ func _shootWeb(targetPosition: Vector2):
 	webTargetPos = targetPosition
 	webString.add_point(Vector2(0,0))
 	webString.add_point(webTargetPos)
-	webString.width = 5.0
-	webString.default_color = Color(1, 0, 0, 1) # Red color
+	webString.width = 1.0
+	webString.default_color = Color(1, 1, 1, 1) # Red color
 	
 	
 	
