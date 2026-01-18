@@ -19,6 +19,6 @@ shape = SubResource("RectangleShape2D_wy34w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(32, 42)
-scale = Vector2(0.9583334, 0.96666664)
+position = Vector2(34, 19)
+scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_d0dg3")

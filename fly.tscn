@@ -11,6 +11,7 @@ atlas = ExtResource("2_qarim")
 region = Rect2(98, 10, 28, 19)
 
 [node name="Fly" type="Area2D" groups=["enemy"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_mv3iy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

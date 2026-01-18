@@ -22,8 +22,8 @@ shape = SubResource("CapsuleShape2D_sh265")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-4.7683716e-07, 0.5)
-scale = Vector2(0.9583334, 0.96666664)
+position = Vector2(0, -14)
+scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_onrkg")
 
 [node name="Enemy Detection" type="Area2D" parent="."]

@@ -11,6 +11,7 @@ atlas = ExtResource("2_gtk5s")
 region = Rect2(80, 48, 48, 64)
 
 [node name="Queen" type="Area2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_rx2bg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
