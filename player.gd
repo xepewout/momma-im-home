@@ -9,6 +9,8 @@ var wind
 var windDirection
 var playerHealth = 3
 var candyPower = false
+var region_size = Vector2(48, 30)
+var region_position = Vector2(48, 1)
 #leaf = slower fall rate
 #salt = faster move speed
 #dead bug = two lives
@@ -29,6 +31,8 @@ func _on_enemy_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		playerHealth -= 1
 		hit.emit()
+		region_size = region_size - Vector2(13,0)
+		$Sprite2D.texture.region = Rect2(region_position, region_size)
 	if area.is_in_group("spikes") or playerHealth == 0:
 		dead.emit()
 		self.queue_free()
