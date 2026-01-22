@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4ufujkp3481a"]
+
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="1_svm2c"]
+[ext_resource type="Script" uid="uid://c81s0rc67pgs4" path="res://present.gd" id="1_t87ex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t87ex"]
+atlas = ExtResource("1_svm2c")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdxfg"]
+size = Vector2(16, 16)
+
+[node name="Present" type="Area2D"]
+script = ExtResource("1_t87ex")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(8, 8)
+texture = SubResource("AtlasTexture_t87ex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_hdxfg")

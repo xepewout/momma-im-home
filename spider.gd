@@ -20,12 +20,12 @@ func _process(delta: float) -> void:
 		
 		if web.position.distance_to(webTargetPos) < 1:
 			t = 0
-			t += delta  * 2
+			t += delta * 1.5
 			webString.set_point_position(0,$CollisionShape2D.position)
 			$CollisionShape2D.position = $CollisionShape2D.position.lerp(webTargetPos,t)
 	else:
 		t = 0
-		t += delta  * 2
+		t += delta  * 1.5
 		webString.set_point_position(0,$CollisionShape2D.position)
 		$CollisionShape2D.position = $CollisionShape2D.position.lerp(webTargetPos,t)
 	
