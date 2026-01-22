@@ -8,18 +8,22 @@ const FLY = preload("res://fly.tscn")
 const DIRT = preload("res://dirt.tscn")
 const FD = preload("res://FD.tscn")
 const QUEEN = preload("res://queen.tscn")
+const PRESENT = preload("res://present.tscn")
 #const FAN = preload("res://fan.tscn")
 var secondToLastPlatform
 var lastPlatform
 var accel = .33
 var max_speed = 12
 var distance = 0
+var level = 0
 var leaf = false
 var rock = false
 var candy = false
 var bug = false
 var salt = false
 var player = PLAYER.instantiate()
+var fd = FD.instantiate()
+var present = PRESENT.instantiate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,11 +35,24 @@ func _ready() -> void:
 	Global.game_speed = 0
 	
 func _gameStart():
+	add_child(player)
+	fd.position= Vector2(0,player.position.y + 18)
+	present.position = Vector2(384,player.position.y)
+	add_child(fd)
+	add_child(present)
+	
+	
+func _changeLevel():
+	if level > 0:
+		leaf = true
+	elif level > 1:
+		pass
 	Global.falling = true
 	Global.game_speed = 5
-	add_child(player)
+	remove_child(fd)
+	call_deferred("remove_child",present)
+	_changeGameType()
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.falling:
@@ -53,7 +70,6 @@ func _process(delta: float) -> void:
 			player.position.y += 5
 		
 func _spawnQueen():
-	var fd = FD.instantiate()
 	fd.position = Vector2(0,768)
 	add_child(fd)
 	var queen = QUEEN.instantiate()

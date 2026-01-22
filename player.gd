@@ -27,9 +27,11 @@ func _physics_process(_delta: float) -> void:
 	#if wind:
 		#direction = windDirection
 	if direction:
-		velocity.x = direction * SPEED * (Global.game_speed / (Global.game_speed - 1))
+		velocity.x = direction * SPEED
+		#* (Global.game_speed / (Global.game_speed - 1))
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * (Global.game_speed / (Global.game_speed - 1)))
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		#* (Global.game_speed / (Global.game_speed - 1))
 	move_and_slide()
 
 func _on_enemy_detection_area_entered(area: Area2D) -> void:

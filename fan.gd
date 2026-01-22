@@ -17,8 +17,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body._applyWind(body.position.x - position.x)
 			
-
-
 func _on_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		body._removeWind()
