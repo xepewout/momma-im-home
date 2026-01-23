@@ -15,7 +15,6 @@ var lastPlatform
 var accel = .33
 var max_speed = 12
 var distance = 0
-var level = 0
 var leaf = false
 var rock = false
 var candy = false
@@ -24,6 +23,7 @@ var salt = false
 var player = PLAYER.instantiate()
 var fd = FD.instantiate()
 var present = PRESENT.instantiate()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,12 +43,20 @@ func _gameStart():
 	
 	
 func _changeLevel():
-	if level > 0:
+	if Global.level == 1:
 		leaf = true
-	elif level > 1:
-		pass
+	elif Global.level == 2:
+		leaf = false
+		salt = true
+	elif Global.level == 3:
+		bug = true
+	elif Global.level == 4:
+		candy = true
+	elif Global.level == 5:
+		rock = true
 	Global.falling = true
 	Global.game_speed = 5
+	print(Global.level)
 	remove_child(fd)
 	call_deferred("remove_child",present)
 	_changeGameType()
@@ -181,11 +189,12 @@ func _gameOver():
 	$HUD/GameOverLabel.show()
 	await get_tree().create_timer(2.0).timeout
 	Global.falling = false
+	#Global.level
 	get_tree().reload_current_scene()
 
-#if someone the player gets to the top
+#if the player gets to the top
 func _on_wall_spawn_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
+	if body.is_in_group("player"):
 		_gameOver()
 	
 func _on_wall_spawn_body_entered(body: Node2D) -> void:
@@ -195,6 +204,9 @@ func _on_wall_spawn_body_entered(body: Node2D) -> void:
 		else: 
 			body._addHit()
 
+#when something gets to the bottom
 func _on_dirt_despawn_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		body.queue_free()
+	if body.is_in_group("player"):
+		_gameOver()

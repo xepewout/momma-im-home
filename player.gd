@@ -35,6 +35,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_enemy_detection_area_entered(area: Area2D) -> void:
+	if candyPower:
+		area.queue_free()
+		return
 	if area.is_in_group("enemy"):
 		playerHealth -= 1
 		hit.emit()
@@ -43,6 +46,16 @@ func _on_enemy_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("spikes") or playerHealth == 0:
 		dead.emit()
 		self.queue_free()
+		
+func _input(event):
+	if event.is_action_pressed("SPACE") and $"..".candy == true:
+		print("space pressed")
+		_candyPower()
+		
+func _candyPower():
+	candyPower = true
+	await get_tree().create_timer(1.0).timeout
+	candyPower = false
 			
 #func _applyWind(direction: float):
 	#wind = true

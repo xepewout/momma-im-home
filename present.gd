@@ -10,6 +10,6 @@ func _spriteChange():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		$"..".level+=1
+		Global.level+=1
 		$".."._changeLevel()
 		
