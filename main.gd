@@ -9,7 +9,11 @@ const DIRT = preload("res://dirt.tscn")
 const FD = preload("res://FD.tscn")
 const QUEEN = preload("res://queen.tscn")
 const PRESENT = preload("res://present.tscn")
+const playerSpawn = Vector2(512,384)
+const leftWallSpawn = Vector2(0,768)
+const rightWallSpawn = Vector2(896,768)
 #const FAN = preload("res://fan.tscn")
+
 var secondToLastPlatform
 var lastPlatform
 var accel = .33
@@ -25,11 +29,12 @@ var fd = FD.instantiate()
 var present = PRESENT.instantiate()
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player.position = Vector2(512,384)
-	_spawnWall(Vector2(0,768))
-	_spawnWall(Vector2(896,768))
+	player.position = playerSpawn
+	_spawnWall(leftWallSpawn)
+	_spawnWall(rightWallSpawn)
 	player.dead.connect(_gameOver)
 	player.hit.connect(_playerHit)
 	Global.game_speed = 0
@@ -56,7 +61,6 @@ func _changeLevel():
 		rock = true
 	Global.falling = true
 	Global.game_speed = 5
-	print(Global.level)
 	remove_child(fd)
 	call_deferred("remove_child",present)
 	_changeGameType()
@@ -69,7 +73,7 @@ func _process(delta: float) -> void:
 	else:
 		$ObstacleTimer.paused = true
 	distance += delta * Global.game_speed
-	if(distance >= 150):
+	if(distance >= 50):
 		if Global.falling == true and player:
 			_spawnQueen()
 			player._toggleCamera()
@@ -133,12 +137,6 @@ func _spawnObstacle(ObstaclePosition = null):
 	if lastPlatform.position.y != platform.position.y:
 		secondToLastPlatform = lastPlatform
 	lastPlatform = platform
-		
-func _spawnSpider():
-	var spider = SPIDER.instantiate()
-	add_child(spider)
-	spider.position = lastPlatform.position + Vector2(0,48)
-	spider._shootWeb(secondToLastPlatform.position - spider.position)
 	
 func _on_wall_spawn_area_exited(area: Area2D) -> void:
 	area.queue_free()
@@ -160,14 +158,6 @@ func _on_obstacle_timer_timeout() -> void:
 		_spawnFly()
 	elif doEnemy < .75:
 		_spawnDirt()
-	#elif doEnemy < 1:
-		#_spawnFan()
-
-#func _spawnFan():
-	#var fan = FAN.instantiate()
-	#add_child(fan)
-	#var fanPos = randi_range(0,5)
-	#fan.position = Vector2(128 + 128 * fanPos, 660)
 
 func _spawnDirt():
 	var dirt = DIRT.instantiate()
@@ -180,29 +170,37 @@ func _spawnFly():
 	fly.position = lastPlatform.position - Vector2(0,40)
 	fly._firePea()
 	
+func _spawnSpider():
+	var spider = SPIDER.instantiate()
+	add_child(spider)
+	spider.position = lastPlatform.position + Vector2(0,48)
+	spider._shootWeb(secondToLastPlatform.position - spider.position)
+	
 func _playerHit():
-	print("player hita")
-	#$HUD.updateHealth()
+	print("player hit")
 	pass
 	
 func _gameOver():
 	$HUD/GameOverLabel.show()
 	await get_tree().create_timer(2.0).timeout
 	Global.falling = false
-	#Global.level
 	get_tree().reload_current_scene()
 
-#if the player gets to the top
-func _on_wall_spawn_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		_gameOver()
-	
+
+#edge cases
+
+#despawn dirt if it lands on platform
 func _on_wall_spawn_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if body.tempDespawnHit > 1:
 			body.queue_free()
 		else: 
 			body._addHit()
+			
+#if the player gets to the top
+func _on_wall_spawn_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		_gameOver()
 
 #when something gets to the bottom
 func _on_dirt_despawn_body_entered(body: Node2D) -> void:
