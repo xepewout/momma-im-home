@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjqnuak75yven"]
+
+[ext_resource type="Script" uid="uid://betegmrftl6qs" path="res://node_2d.gd" id="1_h3di4"]
+[ext_resource type="Texture2D" uid="uid://c3mvku1h6hfjo" path="res://assets/spritesheet.png" id="2_ljuos"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3di4"]
+atlas = ExtResource("2_ljuos")
+region = Rect2(88, 48, 40, 64)
+
+[node name="QueenAnt" type="Node2D"]
+script = ExtResource("1_h3di4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_h3di4")

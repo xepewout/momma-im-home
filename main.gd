@@ -13,6 +13,7 @@ const playerSpawn = Vector2(512,384)
 const leftWallSpawn = Vector2(0,768)
 const rightWallSpawn = Vector2(896,768)
 #const FAN = preload("res://fan.tscn")
+const dialogue = preload("res://AntTimeline.dtl")
 
 var secondToLastPlatform
 var lastPlatform
@@ -45,6 +46,7 @@ func _gameStart():
 	present.position = Vector2(384,player.position.y)
 	add_child(fd)
 	add_child(present)
+	Dialogic.start(dialogue)
 	
 	
 func _changeLevel():
@@ -76,6 +78,7 @@ func _process(delta: float) -> void:
 	if(distance >= 50):
 		if Global.falling == true and player:
 			_spawnQueen()
+			$DirtDespawn.queue_free()
 			player._toggleCamera()
 		Global.falling = false
 		if player:
