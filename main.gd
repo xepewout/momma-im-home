@@ -39,6 +39,7 @@ func _ready() -> void:
 	player.dead.connect(_gameOver)
 	player.hit.connect(_playerHit)
 	Global.game_speed = 0
+	Dialogic.signal_event.connect(_on_dialogic_signal)
 	
 func _gameStart():
 	add_child(player)
@@ -46,8 +47,13 @@ func _gameStart():
 	present.position = Vector2(384,player.position.y)
 	add_child(fd)
 	add_child(present)
+		
 	Dialogic.start(dialogue)
-	
+	Dialogic.paused = false
+
+func _on_dialogic_signal(arg: String):
+	if arg == "true":
+		Dialogic.paused = true
 	
 func _changeLevel():
 	if Global.level == 1:

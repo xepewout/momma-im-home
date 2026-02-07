@@ -1,2 +1,3 @@
-join queenAnt left
 queenAnt: Hello my son, please bring me a leaf so that I may bathe in the sun
+[signal arg="true"]
+queenAnt: Hello my son, please bring me some salt so I may season my food
