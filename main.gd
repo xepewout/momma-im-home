@@ -50,10 +50,13 @@ func _gameStart():
 		
 	Dialogic.start(dialogue)
 	Dialogic.paused = false
+	Dialogic.Text.show_textbox()
+	
 
 func _on_dialogic_signal(arg: String):
 	if arg == "true":
 		Dialogic.paused = true
+		Dialogic.Text.hide_textbox()
 	
 func _changeLevel():
 	if Global.level == 1:
@@ -81,12 +84,15 @@ func _process(delta: float) -> void:
 	else:
 		$ObstacleTimer.paused = true
 	distance += delta * Global.game_speed
-	if(distance >= 50):
+	if(distance >= 20):
 		if Global.falling == true and player:
+			Global.falling = false
 			_spawnQueen()
 			$DirtDespawn.queue_free()
-			player._toggleCamera()
-		Global.falling = false
+			#player._toggleCamera()
+			await get_tree().create_timer(2.0).timeout
+			#Global.game_speed = 0
+			
 		if player:
 			player.position.y += 5
 		
@@ -94,7 +100,7 @@ func _spawnQueen():
 	fd.position = Vector2(0,768)
 	add_child(fd)
 	var queen = QUEEN.instantiate()
-	queen.position = Vector2(0,748)
+	queen.position = Vector2(0,628)
 	add_child(queen)
 	
 func _gameWon():
