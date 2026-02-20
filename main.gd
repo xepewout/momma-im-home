@@ -47,7 +47,6 @@ func _gameStart():
 	present.position = Vector2(384,player.position.y)
 	add_child(fd)
 	add_child(present)
-		
 	Dialogic.start(dialogue)
 	Dialogic.paused = false
 	Dialogic.Text.show_textbox()
@@ -80,6 +79,7 @@ func _changeLevel():
 func _process(delta: float) -> void:
 	if Global.falling:
 		Global.game_speed = min(Global.game_speed + delta * accel, max_speed)
+		print(Global.game_speed)
 		$ObstacleTimer.paused = false
 	else:
 		$ObstacleTimer.paused = true
@@ -91,7 +91,8 @@ func _process(delta: float) -> void:
 			$DirtDespawn.queue_free()
 			#player._toggleCamera()
 			await get_tree().create_timer(2.0).timeout
-			#Global.game_speed = 0
+			Global.game_speed = 0
+			#why do walls still move up after setting game_speed to 0
 			
 		if player:
 			player.position.y += 5
@@ -100,7 +101,7 @@ func _spawnQueen():
 	fd.position = Vector2(0,768)
 	add_child(fd)
 	var queen = QUEEN.instantiate()
-	queen.position = Vector2(0,628)
+	queen.position = Vector2(0,630)
 	add_child(queen)
 	
 func _gameWon():
