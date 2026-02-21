@@ -85,13 +85,21 @@ func _process(delta: float) -> void:
 		$ObstacleTimer.paused = true
 	distance += delta * Global.game_speed
 	if(distance >= 20):
+		if Global.game_speed > 0:
+			if Global.game_speed > .05:
+				Global.game_speed -= .05
+			else:
+				Global.game_speed = 0
+	
 		if Global.falling == true and player:
 			Global.falling = false
 			_spawnQueen()
 			$DirtDespawn.queue_free()
 			#player._toggleCamera()
+			
+			print("Global.game_speed")
 			await get_tree().create_timer(2.0).timeout
-			Global.game_speed = 0
+			
 			#why do walls still move up after setting game_speed to 0
 			
 		if player:
